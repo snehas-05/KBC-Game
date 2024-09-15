@@ -1,0 +1,60 @@
+def display_question(level, questions, options):
+  print(f"\nLevel {level + 1}: {questions[level]}")
+  for opt in options[level]:
+      print(opt)
+  
+def get_user_answer():
+  return input("\nYour answer (A, B, C, D): ").upper()
+
+def handle_answer(level, correct_answers):
+  user_answer = get_user_answer()
+  if user_answer == correct_answers[level]:
+      print("Correct! You've moved to the next level.")
+      return True
+  else:
+      print("Incorrect. Game over.")
+      return False
+
+def main():
+ questions = [
+      "What is the capital of India?",
+      "Which is the largest continent in the World?",
+      "Which is the national flower of India?",
+      "Who wrote the famous play 'The Merchant Of Venice'?"
+  ]
+ options = [
+      ["A. Panaji", "B. Maharashtra", "C. Delhi", "D. Sikkim"],
+      ["A. America", "B. Asia", "C. Africa", "D. Europe"],
+      ["A. Lilly", "B. Lotus", "C. Marigold", "D. Sunflower"],
+      ["A. William Shakespeare", "B. Mark Twain", "C. Ernest Hemingway", "D. J.K. Rowling"]
+  ]
+
+ correct_answers = ["C", "B", "B", "A"]
+
+ prize_money = [1000, 2000, 5000, 10000]
+
+ print("Welcome to the KBC Game!")
+ print("You will be asked some questions. Answer correctly to move to the next level.")
+  
+ print("Let's start!\n")
+
+ level = 0
+ score = 0
+
+ while level < len(questions):
+      display_question(level, questions, options)
+
+      if handle_answer(level, correct_answers):
+          score += 1
+          level += 1
+      else:
+          break
+
+ if score > 0:
+      final_amount = prize_money[score - 1]
+      print(f"Congratulations! You've reached level {score}. Your final amount is ${final_amount}.You'll be taking this amount with you!")
+ else:
+   print("Game over. You did not win any prize.")
+
+if __name__ == "__main__":
+  main()
